@@ -15,28 +15,33 @@
         </div>
     </nav>
 
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col">Employee ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Salary</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Actions</th>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Salary</th>
+                <th>Performance</th> <!-- add performance header -->
+                <th>Leave Days</th> <!-- add leave days header -->
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let employee of empList">
-                <td>{{employee.id}}</td>
-                <td>{{employee.name}}</td>
-                <td>{{employee.email}}</td>
-                <td>{{employee.salary}}</td>
-                <td>{{employee.phone}}</td>
+            <tr *ngFor="let emp of empList">
+                <td>{{ emp.id }}</td>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{ emp.phone }}</td>
+                <td>{{ emp.salary }}</td>
+                <td>{{ emp.performance }}</td> <!-- display performance data -->
+                <td>{{ emp.leaveDays }}</td> <!-- display leave days data -->
+                
                 <td>
                     <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
-                        data-bs-target="#editEmployee" (click)="editEmployee(employee)">Edit</button>
-                    <button type="button" class="btn btn-outline-danger" (click)="deleteEmployee(employee)">Delete</button>
+                        data-bs-target="#editEmployee" (click)="editEmployee(emp)">Edit</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteEmployee(emp)">Delete</button>
                 </td>
             </tr>
         </tbody>
@@ -113,6 +118,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone</label>
+                            <input type="number" class="form-control" formControlName="phone" id="phone" name="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Performance</label>
+                            <input type="number" class="form-control" formControlName="phone" id="phone" name="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Leave Days</label>
                             <input type="number" class="form-control" formControlName="phone" id="phone" name="phone">
                         </div>
 
