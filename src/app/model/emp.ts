@@ -1,5 +1,5 @@
 export class Emp {
-
+    id : number;
     name: string;
     email: string;
     phone: number;
@@ -8,7 +8,7 @@ export class Emp {
     duration: string;
 
     constructor() {
-        
+        this.id= 0;
         this.name = '';
         this.email = '';
         this.phone= 0;

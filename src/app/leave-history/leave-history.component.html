@@ -19,6 +19,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th scope="col">Employee ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
@@ -31,18 +32,19 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let emp of leaveList">
-                <td>{{ emp.name }}</td>
-                <td>{{ emp.email }}</td>
-                <td>{{emp.phone}}</td>
-                <td>{{ emp.leavestartday }}</td>
-                <td>{{ emp.leaveendday }}</td>
-                <td>{{ emp.duration }}</td>
+            <tr *ngFor="let employee of leaveList">
+                <td>{{employee.id}}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{employee.phone}}</td>
+                <td>{{ employee.leavestartday }}</td>
+                <td>{{ employee.leaveendday }}</td>
+                <td>{{ employee.duration }}</td>
         
                 <td>
                     <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
-                        data-bs-target="#editEmployee" (click)="editEmployee(emp)">Edit</button>
-                    <button type="button" class="btn btn-outline-danger" (click)="deleteEmployee(emp)">Delete</button>
+                        data-bs-target="#editEmployee" (click)="editEmployee(employee)">Edit</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteEmployee(employee)">Delete</button>
                 </td>
             </tr>
         </tbody>

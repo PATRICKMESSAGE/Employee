@@ -16,13 +16,14 @@ export class LeaveHistoryComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private empService: LeaveHistoryService,
+    private employeeService: LeaveHistoryService,
     private http: HttpClient
   ) { }
 
   ngOnInit(): void {
     this.getAllEmployee();
     this.leaveDetail = this.formBuilder.group({
+      id: [''],
       name: [''],
       email: [''],
       phone: [''],
@@ -34,6 +35,7 @@ export class LeaveHistoryComponent {
 
   addEmployee() {
     console.log(this.leaveDetail);
+    this.leaveObject.id = this.leaveDetail.value.id;
     this.leaveObject.name = this.leaveDetail.value.name;
     this.leaveObject.email = this.leaveDetail.value.email;
     this.leaveObject.phone = this.leaveDetail.value.phone;
@@ -63,16 +65,18 @@ export class LeaveHistoryComponent {
     );
   }
 
-  editEmployee(emp: Emp) {
-    this.leaveDetail.controls['name'].setValue(emp.name);
-    this.leaveDetail.controls['email'].setValue(emp.email);
-    this.leaveDetail.controls['phone'].setValue(emp.phone);
-    this.leaveDetail.controls['leavestartday'].setValue(emp.leavestartday);
-    this.leaveDetail.controls['leaveendday'].setValue(emp.leaveendday);
-    this.leaveDetail.controls['duration'].setValue(emp.duration);
+  editEmployee(employee: Emp) {
+    this.leaveDetail.controls['id'].setValue(employee.id);
+    this.leaveDetail.controls['name'].setValue(employee.name);
+    this.leaveDetail.controls['email'].setValue(employee.email);
+    this.leaveDetail.controls['phone'].setValue(employee.phone);
+    this.leaveDetail.controls['leavestartday'].setValue(employee.leavestartday);
+    this.leaveDetail.controls['leaveendday'].setValue(employee.leaveendday);
+    this.leaveDetail.controls['duration'].setValue(employee.duration);
   }
 
   updateEmployee() {
+    this.leaveObject.id = this.leaveDetail.value.id;
     this.leaveObject.name = this.leaveDetail.value.name;
     this.leaveObject.email = this.leaveDetail.value.email;
     this.leaveObject.phone = this.leaveDetail.value.phone;
@@ -80,7 +84,7 @@ export class LeaveHistoryComponent {
     this.leaveObject.leaveendday = this.leaveDetail.value.leaveendday;
     this.leaveObject.duration = this.leaveDetail.value.duration;
 
-    this.empService.updateEmployee(this.leaveObject).subscribe(
+    this.employeeService.updateEmployee(this.leaveObject).subscribe(
       (res) => {
         console.log(res);
         this.getAllEmployee();
@@ -91,8 +95,8 @@ export class LeaveHistoryComponent {
     );
   }
 
-  deleteEmployee(emp: Emp) {
-    this.empService.deleteEmployee(emp).subscribe(
+  deleteEmployee(employee: Emp) {
+    this.employeeService.deleteEmployee(employee).subscribe(
       (res) => {
         console.log(res);
         alert('Are you to delete this Employee permanently.');
