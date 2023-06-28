@@ -1,0 +1,14 @@
+<div style="text-align: center;">
+    <h1>WELCOME TO PETSO WHOLESALE</h1>
+    <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" [(ngModel)]="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" [(ngModel)]="password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>

@@ -1,0 +1,162 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Employees on Leave</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addEmployee"
+                    type="submit">Add Employee</button>
+                <button class="btn btn-outline-success" routerLink="/leave-history">Employee Leave History</button>
+            
+            </div>
+        </div>
+    </nav>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Leavestartday</th>
+                <th>Leaveendday</th>
+                <th>Duration</th>
+                <th>Remove or Edit</th> 
+                
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let emp of leaveList">
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{emp.phone}}</td>
+                <td>{{ emp.leavestartday }}</td>
+                <td>{{ emp.leaveendday }}</td>
+                <td>{{ emp.duration }}</td>
+        
+                <td>
+                    <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
+                        data-bs-target="#editEmployee" (click)="editEmployee(emp)">Edit</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteEmployee(emp)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+        
+    </table>
+
+    <!-- Add Employee Modal -->
+    <div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Employee on Leave</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form [formGroup]="leaveDetail">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" formControlName="name" id="name"
+                                aria-describedby="emailHelp" autocomplete="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" formControlName="email" id="email"
+                                aria-describedby="emailHelp" autocomplete="email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="number" class="form-control" formControlName="phone" id="phone" aria-describedby="emailHelp"
+                                autocomplete="phone">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="leavestartday" class="form-label">Leavestartday</label>
+                            <input type="string" class="form-control" formControlName="leavestartday" id="leavestartday"
+                                aria-describedby="emailHelp" autocomplete="leavestartday">
+                        </div>
+                        <div class="mb-3">
+                            <label for="leaveendday" class="form-label">Leaveendday</label>
+                            <input type="string" class="form-control" formControlName="leaveendday" id="leaveendday" autocomplete="leaveendday" >
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Duration</label>
+                            <input type="text" class="form-control" formControlName="duration" id="duration" aria-describedby="emailHelp"
+                                autocomplete="duration">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="addEmployee()">Add Employee</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Employee modal-->
+    <div class="modal fade" id="editEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Employee Leave History</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form [formGroup]="leaveDetail">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" formControlName="name" id="name"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" formControlName="email" id="email"
+                                aria-describedby="emailHelp">
+                            
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="number" class="form-control" formControlName="phone" id="phone" aria-describedby="emailHelp">
+                        
+                        </div>
+                        <div class="mb-3">
+                            <label for="leavestartday" class="form-label">leavestartday</label>
+                            <input type="string" class="form-control" formControlName="leavestartday" id="leavestartday"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="leaveendday" class="form-label">Leaveendday</label>
+                            <input type="string" class="form-control" formControlName="leaveendday" id="leaveendday" name="leaveendday">
+                        </div>
+                        <div class="mb-3">
+                            <label for="duration" class="form-label">Duration</label>
+                            <input type="string" class="form-control" formControlName="duration" id="duration" name="duration">
+                        </div>   
+                        
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="updateEmployee()">Update</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
