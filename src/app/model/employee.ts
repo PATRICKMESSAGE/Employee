@@ -4,8 +4,6 @@ export class Employee {
     email: string;
     phone: string;
     salary: number;
-    performance: number; // add performance field
-    leaveDays: number; // add leave days field
 
     constructor(){
         this.id = 0;
@@ -13,8 +11,7 @@ export class Employee {
         this.email='';
         this.phone= '';
         this.salary = 0;
-        this.performance = 0;
-        this.leaveDays = 0;
+        
         
     }
 }

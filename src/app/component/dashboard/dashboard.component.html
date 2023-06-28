@@ -10,7 +10,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addEmployee"
                     type="submit">Add Employee</button>
-                <button class="btn btn-outline-success" type="submit">Search Employee</button>
+                <button class="btn btn-outline-success"> <a href="/leave-history">Employee Leave History</a> </button>
+                <button class="btn btn-outline-success">Employee Perfomance</button>
             </div>
         </div>
     </nav>
@@ -23,8 +24,6 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Salary</th>
-                <th>Performance</th> <!-- add performance header -->
-                <th>Leave Days</th> <!-- add leave days header -->
                 <th>Action</th>
             </tr>
         </thead>
@@ -35,8 +34,6 @@
                 <td>{{ emp.email }}</td>
                 <td>{{ emp.phone }}</td>
                 <td>{{ emp.salary }}</td>
-                <td>{{ emp.performance }}</td> <!-- display performance data -->
-                <td>{{ emp.leaveDays }}</td> <!-- display leave days data -->
                 
                 <td>
                     <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
@@ -120,14 +117,7 @@
                             <label for="phone" class="form-label">Phone</label>
                             <input type="number" class="form-control" formControlName="phone" id="phone" name="phone">
                         </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Performance</label>
-                            <input type="number" class="form-control" formControlName="phone" id="phone" name="phone">
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Leave Days</label>
-                            <input type="number" class="form-control" formControlName="phone" id="phone" name="phone">
-                        </div>
+                       
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

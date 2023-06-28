@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Employee } from 'src/app/model/employee';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,10 +18,17 @@ export class DashboardComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private empService: EmployeeService,
-    private http: HttpClient
+    private http: HttpClient, 
+    private router:Router
   ) { }
 
   ngOnInit(): void {
+
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    if (!isAuthenticated) {
+      this.router.navigate(['/login']);
+    }
+
     this.getAllEmployee();
     this.empDetail = this.formBuilder.group({
       id: [''],
@@ -30,6 +38,7 @@ export class DashboardComponent implements OnInit {
       phone: [''],
     });
   }
+  
 
   addEmployee() {
     console.log(this.empDetail);
@@ -93,7 +102,7 @@ export class DashboardComponent implements OnInit {
     this.empService.deleteEmployee(emp).subscribe(
       (res) => {
         console.log(res);
-        alert('The Employee has deleted successfully.');
+        alert('Are you to delete this Employee permanently.');
         this.getAllEmployee();
       },
       (err) => {
@@ -101,4 +110,5 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+
 }
