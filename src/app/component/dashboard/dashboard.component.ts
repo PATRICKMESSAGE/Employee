@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
     this.empObject.salary = this.empDetail.value.salary;
     this.empObject.phone = this.empDetail.value.phone;
 
-    this.http.post<Employee>('http://localhost:4200/employees', this.empObject).subscribe(
+    this.http.post<Employee>('http://localhost:8100/employees', this.empObject).subscribe(
       (res) => {
         console.log(res);
         this.getAllEmployee();
@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllEmployee() {
-    this.http.get<Employee[]>('http://localhost:4200/employees').subscribe(
+    this.http.get<Employee[]>('http://localhost:8100/employees').subscribe(
       (res) => {
         this.empList = res;
       },
